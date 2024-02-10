@@ -4,13 +4,13 @@ let ateNum;
 let numA = [];
 
 function InicioGame() {
-
-    
+    AtivaSorteio();
     InnerHTML("Números sorteados: nenhum até agora");
-
+    numA = [];
+    //document.getElementById("#resultado").className.replace("", "texto__paragrafo")
 }
 
-// InicioGame();
+InicioGame();
 
 //Busca a quantidade que o usuário deseja no input definido por id no parâmetro
 function Quantidade(){
@@ -50,16 +50,27 @@ function Sortear() {
 
     for (i = 0; i < quantidade; i++) {
     num = (Math.random() * (ateNum - deNum)) + 1.5;
-    numA.push(num);
+    numA.push(parseInt(num));
     }
-    InnerHTML(`Números sorteados: ${numA}`);
-    document.getElementById("btn-reiniciar").setAttribute("enabled", "disabled")
+    InnerHTML(`Números sorteados: ${numA} `);
+    AtivaReiniciar();
 }
 
 function Reiniciar() {
     InicioGame();
-    numA = [];
 }
+
+function AtivaReiniciar() {
+    document.getElementById("btn-reiniciar").removeAttribute("disabled")
+    document.getElementById("btn-sortear").setAttribute("disabled", "enabled")
+}
+
+function AtivaSorteio() {
+        document.getElementById("btn-sortear").removeAttribute("disabled")
+        document.getElementById("btn-reiniciar").setAttribute("disabled", "enabled")
+        //document.getElementById("btn-reiniciar").setAttribute("class", ".container__botao-desabilitado")
+}
+
 
 
 
