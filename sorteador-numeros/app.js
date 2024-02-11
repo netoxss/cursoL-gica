@@ -4,8 +4,9 @@ let ateNum;
 let numA = [];
 
 function InicioGame() {
-    AtivaSorteio();
+    AtivaBotao("btn-sortear", "btn-reiniciar");
     InnerHTML("Números sorteados: nenhum até agora");
+    document.getElementById("resultado").setAttribute("class", "texto__paragrafo")
     numA = [];
     //document.getElementById("#resultado").className.replace("", "texto__paragrafo")
 }
@@ -52,24 +53,28 @@ function Sortear() {
     num = (Math.random() * (ateNum - deNum)) + 1.5;
     numA.push(parseInt(num));
     }
-    InnerHTML(`Números sorteados: ${numA} `);
-    AtivaReiniciar();
+    InnerHTML(`Números sorteados: ${numA}`);
+    document.getElementById("resultado").setAttribute("class", "texto__paragrafo");
+    AtivaBotao("btn-reiniciar", "btn-sortear");
 }
 
 function Reiniciar() {
     InicioGame();
 }
 
-function AtivaReiniciar() {
-    document.getElementById("btn-reiniciar").removeAttribute("disabled")
-    document.getElementById("btn-sortear").setAttribute("disabled", "enabled")
+function AtivaBotao(ativa, desativa) {
+    document.getElementById(ativa).removeAttribute("disabled");
+    document.getElementById(desativa).setAttribute("disabled", "");
+    document.getElementById(desativa).setAttribute("class", "container__botao-desabilitado");
+    document.getElementById(ativa).setAttribute("class", "container__botao");
 }
 
-function AtivaSorteio() {
-        document.getElementById("btn-sortear").removeAttribute("disabled")
-        document.getElementById("btn-reiniciar").setAttribute("disabled", "enabled")
-        //document.getElementById("btn-reiniciar").setAttribute("class", ".container__botao-desabilitado")
-}
+// function AtivaSorteio() {
+//         document.getElementById("btn-sortear").removeAttribute("disabled");
+//         document.getElementById("btn-reiniciar").setAttribute("disabled", "");
+//         document.getElementById("btn-reiniciar").setAttribute("class", "container__botao-desabilitado");
+//         document.getElementById("btn-sortear").setAttribute("class", "container__botao");
+// }
 
 
 
