@@ -28,7 +28,7 @@ function InnerHTML(texto) {
     return query.innerHTML = texto;
 }
 
-//Sorteia os números de acordo com os valores que o usuário deseja
+//Sorteia os números de acordo com os valores que o usuário deseja verificando se a entrada é viável
 function Sortear() {
 
     GetValues();
