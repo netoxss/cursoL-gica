@@ -1,8 +1,10 @@
-let quantidade = 0;
-let deNum = 0;
-let ateNum= 0;
+let quantidade;
+let deNum;
+let ateNum;
 let numA = [];
 
+
+//Função que define as condições iniciais do MiniGame
 function InicioGame() {
     AtivaBotao("btn-sortear", "btn-reiniciar");
     InnerHTML("Números sorteados: nenhum até agora");
@@ -18,10 +20,15 @@ function GetValues(){
     deNum = document.querySelector("#de").value;
     ateNum = document.querySelector("#ate").value;
 
+    console.log(quantidade,deNum, ateNum);
     return quantidade, deNum, ateNum;
 }
 
-//Função para alterar HTML com os números sorteados
+function NumeroAleatorio(min, max) {
+    return Math.floor(Math.random() * (max - min + 1)) + 1;
+}
+
+//Função para alterar a tag HTML com os números sorteados
 function InnerHTML(texto) {
 
     let query = document.querySelector("#resultado");
@@ -37,37 +44,27 @@ function Sortear() {
         InnerHTML("Número inicial deve ser menor que o final! Entrada inválida.");
     }
     else {
-        let num;
 
         for (i = 0; i < quantidade; i++) {
-            num = (Math.random() * (ateNum - deNum)) + 1.5;
-            numA.push(parseInt(num));
+
+            num = NumeroAleatorio(deNum, ateNum);
+            numA.push(num);
+            console.log(num);
+            
         }
+        console.log(numA);
         InnerHTML(`Números sorteados: ${numA}`);
         document.getElementById("resultado").setAttribute("class", "texto__paragrafo");
         AtivaBotao("btn-reiniciar", "btn-sortear");
     }
-
-    //     let num;
-
-    // for (i = 0; i < quantidade; i++) {
-    // num = (Math.random() * (ateNum - deNum)) + 1.5;
-    // numA.push(parseInt(num));
-    // }
-    // InnerHTML(`Números sorteados: ${numA}`);
-    // document.getElementById("resultado").setAttribute("class", "texto__paragrafo");
-    // AtivaBotao("btn-reiniciar", "btn-sortear");
-
-    // InnerHTML("Número inicial maior que o final, entrada inválida!");
-    // setTimeout(5);
-    // InicioGame();
-    
 }
 
+//Redefine as condições iniciais do MiniGame
 function Reiniciar() {
     InicioGame();
 }
 
+//Função para alterar a classe e atributo dos botões
 function AtivaBotao(ativa, desativa) {
     document.getElementById(ativa).removeAttribute("disabled");
     document.getElementById(desativa).setAttribute("disabled", "");
